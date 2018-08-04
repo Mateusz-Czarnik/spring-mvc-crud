@@ -1,3 +1,3 @@
-CREATE USER 'springstudent'@'localhost' IDENTIFIED BY 'springstudent';
+CREATE USER 'springuser'@'localhost' IDENTIFIED BY 'springuser';
 
-GRANT ALL PRIVILEGES ON * . * TO 'springstudent'@'localhost';
+GRANT ALL PRIVILEGES ON * . * TO 'springuser'@'localhost';
