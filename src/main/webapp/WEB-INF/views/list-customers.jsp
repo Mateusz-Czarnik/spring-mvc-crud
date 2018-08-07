@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>List customers</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+    <script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
 </head>
 <body>
 <div id="wrapper">
@@ -17,6 +18,7 @@
     </div>
     <div id="container">
         <div id="content">
+            <input class="add-button" type="button" value="Add Customer">
             <table>
                 <tr>
                     <th>First Name</th>

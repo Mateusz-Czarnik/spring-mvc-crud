@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.mczarnik.springmvc.entity.Customer;
 import pl.mczarnik.springmvc.service.CustomerService;
 
 @Controller
@@ -20,5 +21,15 @@ public class CustomerController {
         model.addAttribute("customers", customerService.getCustomers());
 
         return "list-customers";
+    }
+
+    @GetMapping("/add")
+    public String addCustomer(Model model) {
+        // Create model attribute to bind form data
+        Customer customer = new Customer();
+
+        model.addAttribute("Customer", customer);
+
+        return "add-customer-form";
     }
 }
