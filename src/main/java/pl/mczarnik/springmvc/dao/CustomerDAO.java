@@ -5,7 +5,9 @@ import pl.mczarnik.springmvc.entity.Customer;
 import java.util.List;
 
 public interface CustomerDAO {
+    Customer getCustomer(int id);
+
     List<Customer> getCustomers();
 
-    void addCustomer(Customer customer);
+    void saveOrUpdateCustomer(Customer customer);
 }

@@ -3,10 +3,7 @@ package pl.mczarnik.springmvc.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.mczarnik.springmvc.entity.Customer;
 import pl.mczarnik.springmvc.service.CustomerService;
 
@@ -29,14 +26,23 @@ public class CustomerController {
         // Create model attribute to bind form data
         Customer customer = new Customer();
 
-        model.addAttribute("Customer", customer);
+        model.addAttribute("customer", customer);
 
-        return "add-customer-form";
+        return "customer-form";
+    }
+
+    @GetMapping("/update")
+    public String updateCustomer(@RequestParam("id") int id, Model model) {
+        Customer customer = customerService.getCustomer(id);
+
+        model.addAttribute("customer", customer);
+
+        return "customer-form";
     }
 
     @PostMapping("/process-form")
     public String processForm(@ModelAttribute("customer") Customer customer) {
-        customerService.addCustomer(customer);
+        customerService.saveOrUpdateCustomer(customer);
 
         return "redirect:/customer/list";
     }

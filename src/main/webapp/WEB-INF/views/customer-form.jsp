@@ -19,7 +19,9 @@
     </div>
     <div id="container">
         <h3>Save Customer</h3>
-        <form:form action="process-form" modelAttribute="Customer" method="post">
+        <form:form action="process-form" modelAttribute="customer" method="post">
+            <%-- Associate data with specific customer --%>
+            <form:hidden path="id"/>
             <table>
                 <tbody>
                 <tr>

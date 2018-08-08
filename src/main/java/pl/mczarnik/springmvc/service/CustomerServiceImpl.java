@@ -16,12 +16,17 @@ public class CustomerServiceImpl implements CustomerService {
 
     // Simply delegate call to customerDAO
     @Transactional
+    public Customer getCustomer(int id) {
+        return customerDAO.getCustomer(id);
+    }
+
+    @Transactional
     public List<Customer> getCustomers() {
         return customerDAO.getCustomers();
     }
 
     @Transactional
-    public void addCustomer(Customer customer) {
-        customerDAO.addCustomer(customer);
+    public void saveOrUpdateCustomer(Customer customer) {
+        customerDAO.saveOrUpdateCustomer(customer);
     }
 }
