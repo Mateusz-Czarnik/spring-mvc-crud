@@ -19,7 +19,7 @@
     </div>
     <div id="container">
         <h3>Save Customer</h3>
-        <form:form action="saveCustomer" modelAttribute="Customer" method="post">
+        <form:form action="process-form" modelAttribute="Customer" method="post">
             <table>
                 <tbody>
                 <tr>

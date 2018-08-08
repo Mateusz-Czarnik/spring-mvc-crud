@@ -19,4 +19,9 @@ public class CustomerServiceImpl implements CustomerService {
     public List<Customer> getCustomers() {
         return customerDAO.getCustomers();
     }
+
+    @Transactional
+    public void addCustomer(Customer customer) {
+        customerDAO.addCustomer(customer);
+    }
 }
