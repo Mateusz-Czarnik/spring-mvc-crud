@@ -40,6 +40,14 @@ public class CustomerController {
         return "customer-form";
     }
 
+    @GetMapping("/delete")
+    public String deleteCustomer(@RequestParam("id") int id) {
+
+        customerService.deleteCustomer(id);
+
+        return "redirect:/customer/list";
+    }
+
     @PostMapping("/process-form")
     public String processForm(@ModelAttribute("customer") Customer customer) {
         customerService.saveOrUpdateCustomer(customer);
