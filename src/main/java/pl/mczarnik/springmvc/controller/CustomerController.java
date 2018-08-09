@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.mczarnik.springmvc.entity.Customer;
 import pl.mczarnik.springmvc.service.CustomerService;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
@@ -53,5 +55,15 @@ public class CustomerController {
         customerService.saveOrUpdateCustomer(customer);
 
         return "redirect:/customer/list";
+    }
+
+    @PostMapping("/search")
+    public String searchCustomers(@RequestParam("name") String name, Model model) {
+
+        List<Customer> customers = customerService.searchCustomers(name);
+
+        model.addAttribute("customers", customers);
+
+        return "list-customers";
     }
 }
