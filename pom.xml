@@ -7,24 +7,50 @@
     <groupId>pl.mczarnik.springmvc</groupId>
     <artifactId>spring-mvc-crud</artifactId>
     <version>0.1</version>
+
+    <properties>
+        <springframework.version>5.0.8.RELEASE</springframework.version>
+        <springsecurity.version>5.0.7.RELEASE</springsecurity.version>
+    </properties>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>5.0.8.RELEASE</version>
+            <version>${springframework.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>5.0.8.RELEASE</version>
+            <version>${springframework.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
-            <version>5.0.8.RELEASE</version>
+            <version>${springframework.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${springframework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${springsecurity.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${springsecurity.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${springsecurity.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
         <dependency>
@@ -98,5 +124,12 @@
             <artifactId>aspectjweaver</artifactId>
             <version>1.9.1</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.0.12.Final</version>
+        </dependency>
+
     </dependencies>
 </project>
