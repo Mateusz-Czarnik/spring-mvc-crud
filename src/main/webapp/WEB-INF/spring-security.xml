@@ -5,12 +5,44 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/security
     http://www.springframework.org/schema/security/spring-security.xsd">
+
     <http auto-config="true">
+        <intercept-url pattern="/customer/add*" access="hasAnyRole('ADMIN','MANAGER')"/>
+        <intercept-url pattern="/customer/process-form*" access="hasAnyRole('ADMIN','MANAGER')"/>
+        <intercept-url pattern="/customer/delete*" access="hasRole('ADMIN')"/>
+        <intercept-url pattern="/customer/**" access="hasRole('EMPLOYEE')"/>
+        <intercept-url pattern="/resources/**" access="permitAll()"/>
+        <access-denied-handler error-page="/403"/>
     </http>
+
+    <!--<authentication-manager>-->
+    <!--<authentication-provider>-->
+    <!--<user-service>-->
+    <!--<user name="user" password="{noop}123" authorities="ROLE_USER"/>-->
+    <!--<user name="admin" password="{noop}123" authorities="ROLE_USER, ROLE_ADMIN"/>-->
+    <!--<user name="manager" password="{noop}123" authorities="ROLE_USER, ROLE_MANAGER"/>-->
+    <!--</user-service>-->
+    <!--</authentication-provider>-->
+    <!--</authentication-manager>-->
+
     <authentication-manager>
         <authentication-provider>
-            <user-service>
-            </user-service>
+            <jdbc-user-service data-source-ref="dataSource"
+                               users-by-username-query="select username, password, 1 as enabled from users where username=?"
+                               authorities-by-username-query="select  username,role from user_role where username=?"/>
+            <password-encoder ref="bCryptPasswordEncoder"/>
         </authentication-provider>
     </authentication-manager>
+
+    <beans:bean id="bCryptPasswordEncoder"
+                class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+    <beans:bean id="dataSource"
+                class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <beans:property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <beans:property name="jdbcUrl"
+                        value="jdbc:mysql://localhost:3306/spring_security_demo_bcrypt?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
+        <beans:property name="user" value="springuser"/>
+        <beans:property name="password" value="springuser"/>
+    </beans:bean>
 </beans:beans>
