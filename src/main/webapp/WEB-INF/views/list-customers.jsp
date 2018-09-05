@@ -21,9 +21,9 @@
         <div id="content">
             <input class="add-button" type="button" value="Add Customer">
             <form:form action="search" method="POST">
-                Search customer by name: <input type="text" name="name" />
+                Search customer by name: <input type="text" name="name"/>
 
-                <input type="submit" value="Search" class="add-button" />
+                <input type="submit" value="Search" class="add-button"/>
             </form:form>
             <table>
                 <tr>
@@ -55,5 +55,11 @@
         </div>
     </div>
 </div>
+
+<form:form action="${pageContext.request.contextPath}/logout"
+           method="POST">
+    <input type="submit" value="Logout" class="add-button"/>
+</form:form>
+
 </body>
 </html>
