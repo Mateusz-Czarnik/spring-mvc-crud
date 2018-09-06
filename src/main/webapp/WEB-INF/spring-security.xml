@@ -23,8 +23,15 @@
 
     <beans:bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <beans:property name="driverClass" value="com.mysql.jdbc.Driver"/>
-        <beans:property name="jdbcUrl" value="jdbc:mysql://localhost:3306/spring_security_demo_bcrypt?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
+        <beans:property name="jdbcUrl"
+                        value="jdbc:mysql://localhost:3306/spring_security_demo_bcrypt?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
         <beans:property name="user" value="springuser"/>
         <beans:property name="password" value="springuser"/>
+
+        <!-- these are connection pool properties for C3P0 -->
+        <beans:property name="initialPoolSize" value="5"/>
+        <beans:property name="minPoolSize" value="5"/>
+        <beans:property name="maxPoolSize" value="20"/>
+        <beans:property name="maxIdleTime" value="30000"/>
     </beans:bean>
 </beans:beans>
