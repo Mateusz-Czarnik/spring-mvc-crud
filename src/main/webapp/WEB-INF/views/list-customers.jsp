@@ -20,6 +20,9 @@
     </div>
     <div id="container">
         <div id="content">
+            <p>
+                User: <security:authentication property="principal.username" />, Role(s): <security:authentication property="principal.authorities" />
+            </p>
             <security:authorize access="hasAnyRole('MANAGER', 'ADMIN')">
                 <input class="add-button" type="button" value="Add Customer">
             </security:authorize>

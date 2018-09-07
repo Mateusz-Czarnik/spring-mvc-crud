@@ -11,9 +11,8 @@
 </head>
 <body>
 <div id="wrapper">
-    <div id="header">
-        <h2>${errorMsg}</h2>
-    </div>
+    <h2>Access Denied - You are not authorized to access this resource.</h2>
+    <hr>
     <a href="${pageContext.request.contextPath}">Back to homepage</a>
 </div>
 </body>

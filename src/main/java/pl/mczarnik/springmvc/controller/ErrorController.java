@@ -9,38 +9,44 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class ErrorController {
 
+    // @RequestMapping("/error")
+    // public ModelAndView renderErrorPage(HttpServletRequest httpRequest) {
+    //
+    //     ModelAndView errorPage = new ModelAndView("error");
+    //     String errorMsg = "";
+    //     int httpErrorCode = getErrorCode(httpRequest);
+    //
+    //     switch (httpErrorCode) {
+    //         case 400: {
+    //             errorMsg = "Http Error Code: 400. Bad Request";
+    //             break;
+    //         }
+    //         case 401: {
+    //             errorMsg = "Http Error Code: 401. Unauthorized";
+    //             break;
+    //         }
+    //         case 403: {
+    //             errorMsg = "Http Error Code: 403. Access Forbidden";
+    //             break;
+    //         }
+    //         case 404: {
+    //             errorMsg = "Http Error Code: 404. Resource not found";
+    //             break;
+    //         }
+    //         case 500: {
+    //             errorMsg = "Http Error Code: 500. Internal Server Error";
+    //             break;
+    //         }
+    //     }
+    //
+    //     errorPage.addObject("errorMsg", errorMsg);
+    //     return errorPage;
+    // }
+
     @RequestMapping("/error")
-    public ModelAndView renderErrorPage(HttpServletRequest httpRequest) {
+    public String error() {
 
-        ModelAndView errorPage = new ModelAndView("error");
-        String errorMsg = "";
-        int httpErrorCode = getErrorCode(httpRequest);
-
-        switch (httpErrorCode) {
-            case 400: {
-                errorMsg = "Http Error Code: 400. Bad Request";
-                break;
-            }
-            case 401: {
-                errorMsg = "Http Error Code: 401. Unauthorized";
-                break;
-            }
-            case 403: {
-                errorMsg = "Http Error Code: 403. Access Forbidden";
-                break;
-            }
-            case 404: {
-                errorMsg = "Http Error Code: 404. Resource not found";
-                break;
-            }
-            case 500: {
-                errorMsg = "Http Error Code: 500. Internal Server Error";
-                break;
-            }
-        }
-
-        errorPage.addObject("errorMsg", errorMsg);
-        return errorPage;
+        return "error";
     }
 
     private int getErrorCode(HttpServletRequest httpRequest) {
