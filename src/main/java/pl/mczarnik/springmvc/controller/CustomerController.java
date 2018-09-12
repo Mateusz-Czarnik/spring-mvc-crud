@@ -25,7 +25,7 @@ public class CustomerController {
 
     @GetMapping("/add")
     public String addCustomer(Model model) {
-        // Create model attribute to bind form data
+        // Create pl.mczarnik.springmvc.model attribute to bind form data
         Customer customer = new Customer();
 
         model.addAttribute("customer", customer);
