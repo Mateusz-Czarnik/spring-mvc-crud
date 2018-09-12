@@ -7,11 +7,18 @@
     http://www.springframework.org/schema/security/spring-security.xsd">
 
     <http auto-config="true">
+        <intercept-url pattern="/login*" access="permitAll()" />
+        <intercept-url pattern="/resources/**" access="permitAll()"/>
+        <intercept-url pattern="/customer/**" access="hasRole('EMPLOYEE')"/>
         <intercept-url pattern="/customer/add*" access="hasAnyRole('ADMIN','MANAGER')"/>
         <intercept-url pattern="/customer/process-form*" access="hasAnyRole('ADMIN','MANAGER')"/>
         <intercept-url pattern="/customer/delete*" access="hasRole('ADMIN')"/>
-        <intercept-url pattern="/customer/**" access="hasRole('EMPLOYEE')"/>
-        <intercept-url pattern="/resources/**" access="permitAll()"/>
+
+        <form-login
+            login-page="/login"
+            authentication-failure-url="/login?error"
+        />
+        <logout logout-success-url="/login?logout"/>
         <access-denied-handler error-page="/error"/>
     </http>
 
