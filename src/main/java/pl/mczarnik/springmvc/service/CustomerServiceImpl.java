@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.mczarnik.springmvc.dao.CustomerDAO;
-import pl.mczarnik.springmvc.entity.Customer;
+import pl.mczarnik.springmvc.entity.CustomerEntity;
 
 import java.util.List;
 
@@ -16,17 +16,17 @@ public class CustomerServiceImpl implements CustomerService {
 
     // Simply delegate call to customerDAO
     @Transactional
-    public Customer getCustomer(int id) {
+    public CustomerEntity getCustomer(int id) {
         return customerDAO.getCustomer(id);
     }
 
     @Transactional
-    public List<Customer> getCustomers() {
+    public List<CustomerEntity> getCustomers() {
         return customerDAO.getCustomers();
     }
 
     @Transactional
-    public void saveOrUpdateCustomer(Customer customer) {
+    public void saveOrUpdateCustomer(CustomerEntity customer) {
         customerDAO.saveOrUpdateCustomer(customer);
     }
 
@@ -36,7 +36,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Transactional
-    public List<Customer> searchCustomers(String name) {
+    public List<CustomerEntity> searchCustomers(String name) {
 
         return customerDAO.searchCustomers(name);
     }

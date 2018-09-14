@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.mczarnik.springmvc.entity.Customer;
+import pl.mczarnik.springmvc.entity.CustomerEntity;
 import pl.mczarnik.springmvc.service.CustomerService;
 
 import java.util.List;
@@ -26,7 +26,7 @@ public class CustomerController {
     @GetMapping("/add")
     public String addCustomer(Model model) {
         // Create pl.mczarnik.springmvc.model attribute to bind form data
-        Customer customer = new Customer();
+        CustomerEntity customer = new CustomerEntity();
 
         model.addAttribute("customer", customer);
 
@@ -35,7 +35,7 @@ public class CustomerController {
 
     @GetMapping("/update")
     public String updateCustomer(@RequestParam("id") int id, Model model) {
-        Customer customer = customerService.getCustomer(id);
+        CustomerEntity customer = customerService.getCustomer(id);
 
         model.addAttribute("customer", customer);
 
@@ -51,7 +51,7 @@ public class CustomerController {
     }
 
     @PostMapping("/process-form")
-    public String processForm(@ModelAttribute("customer") Customer customer) {
+    public String processForm(@ModelAttribute("customer") CustomerEntity customer) {
         customerService.saveOrUpdateCustomer(customer);
 
         return "redirect:/customer/list";
@@ -60,7 +60,7 @@ public class CustomerController {
     @PostMapping("/search")
     public String searchCustomers(@RequestParam("name") String name, Model model) {
 
-        List<Customer> customers = customerService.searchCustomers(name);
+        List<CustomerEntity> customers = customerService.searchCustomers(name);
 
         model.addAttribute("customers", customers);
 

@@ -24,7 +24,7 @@
             </div>
             <div style="padding-top: 30px" class="panel-body">
                 <!-- Registration Form -->
-                <form:form action="${pageContext.request.contextPath}/register/processRegistrationForm"
+                <form:form action="${pageContext.request.contextPath}/register/process"
                            modelAttribute="User"
                            class="form-horizontal">
                     <!-- Place for messages: error, alert etc ... -->

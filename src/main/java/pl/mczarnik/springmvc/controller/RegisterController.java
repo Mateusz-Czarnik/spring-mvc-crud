@@ -7,7 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import pl.mczarnik.springmvc.model.User;
+
+import pl.mczarnik.springmvc.entity.UserEntity;
+import pl.mczarnik.springmvc.model.UserModel;
+import pl.mczarnik.springmvc.service.UserService;
 
 import javax.validation.Valid;
 import java.util.logging.Logger;
@@ -29,14 +32,14 @@ public class RegisterController {
 
     @GetMapping("/show")
     public String showRegister(Model model) {
-        model.addAttribute("User", new User());
+        model.addAttribute("User", new UserModel());
 
         return "register";
     }
 
     @PostMapping("/process")
     public String processRegister(
-            @Valid @ModelAttribute("User") User user,
+            @Valid @ModelAttribute("User") UserModel user,
             BindingResult bindingResult,
             Model model) {
 
@@ -49,9 +52,9 @@ public class RegisterController {
         }
 
         // check the database if user already exists
-        User existing = userService.findByUserName(userName);
+        UserEntity existing = userService.findByUserName(userName);
         if (existing != null) {
-            model.addAttribute("user", new User());
+            model.addAttribute("user", new UserModel());
             model.addAttribute("registrationError", "User name already exists.");
 
             logger.warning("User name already exists.");

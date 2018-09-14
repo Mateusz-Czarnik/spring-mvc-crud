@@ -1,7 +1,7 @@
 package pl.mczarnik.springmvc.model;
 
-import pl.mczarnik.springmvc.validation.FieldMatch;
-import pl.mczarnik.springmvc.validation.ValidEmail;
+import pl.mczarnik.springmvc.validator.FieldMatch;
+import pl.mczarnik.springmvc.validator.ValidEmail;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
         @FieldMatch(first = "password", second = "matchingPassword", message = "The password fields must match")
 })
 
-public class User {
+public class UserModel {
     @NotNull(message = "is required")
     @Size(min = 1, message = "is required")
     private String userName;
@@ -36,7 +36,7 @@ public class User {
     @Size(min = 1, message = "is required")
     private String email;
 
-    public User() {
+    public UserModel() {
 
     }
 

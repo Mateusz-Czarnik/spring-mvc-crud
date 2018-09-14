@@ -1,17 +1,17 @@
 package pl.mczarnik.springmvc.service;
 
-import pl.mczarnik.springmvc.entity.Customer;
+import pl.mczarnik.springmvc.entity.CustomerEntity;
 
 import java.util.List;
 
 public interface CustomerService {
-    Customer getCustomer(int id);
+    CustomerEntity getCustomer(int id);
 
-    List<Customer> getCustomers();
+    List<CustomerEntity> getCustomers();
 
-    void saveOrUpdateCustomer(Customer customer);
+    void saveOrUpdateCustomer(CustomerEntity customerEntity);
 
     void deleteCustomer(int id);
 
-    List<Customer> searchCustomers(String name);
+    List<CustomerEntity> searchCustomers(String name);
 }

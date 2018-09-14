@@ -7,6 +7,18 @@
     <groupId>pl.mczarnik.springmvc</groupId>
     <artifactId>spring-mvc-crud</artifactId>
     <version>0.1</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <properties>
         <springframework.version>5.0.8.RELEASE</springframework.version>

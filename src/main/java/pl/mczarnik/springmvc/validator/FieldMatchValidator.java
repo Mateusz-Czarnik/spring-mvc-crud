@@ -1,4 +1,4 @@
-package pl.mczarnik.springmvc.validation;
+package pl.mczarnik.springmvc.validator;
 
 import org.springframework.beans.BeanWrapperImpl;
 

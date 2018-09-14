@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 @Aspect
 @Component
-public class CRMLoggingAspect {
+public class LoggingAspect {
     private Logger logger = Logger.getLogger(getClass().getName());
 
     @Pointcut("execution(* pl.mczarnik.springmvc.controller.*.*(..))")

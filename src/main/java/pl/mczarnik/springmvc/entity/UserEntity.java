@@ -5,7 +5,7 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,12 +31,12 @@ public class User {
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Collection<Role> roles;
+    private Collection<RoleEntity> roles;
 
-    public User() {
+    public UserEntity() {
     }
 
-    public User(String userName, String password, String firstName, String lastName, String email) {
+    public UserEntity(String userName, String password, String firstName, String lastName, String email) {
         this.userName = userName;
         this.password = password;
         this.firstName = firstName;
@@ -44,8 +44,8 @@ public class User {
         this.email = email;
     }
 
-    public User(String userName, String password, String firstName, String lastName, String email,
-                Collection<Role> roles) {
+    public UserEntity(String userName, String password, String firstName, String lastName, String email,
+                      Collection<RoleEntity> roles) {
         this.userName = userName;
         this.password = password;
         this.firstName = firstName;
@@ -102,17 +102,17 @@ public class User {
         this.email = email;
     }
 
-    public Collection<Role> getRoles() {
+    public Collection<RoleEntity> getRoles() {
         return roles;
     }
 
-    public void setRoles(Collection<Role> roles) {
+    public void setRoles(Collection<RoleEntity> roles) {
         this.roles = roles;
     }
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", userName='" + userName + '\'' + ", password='" + "*********" + '\''
+        return "UserEntity{" + "id=" + id + ", userName='" + userName + '\'' + ", password='" + "*********" + '\''
                 + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + ", email='" + email + '\''
                 + ", roles=" + roles + '}';
     }

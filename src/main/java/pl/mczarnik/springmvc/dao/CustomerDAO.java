@@ -1,17 +1,17 @@
 package pl.mczarnik.springmvc.dao;
 
-import pl.mczarnik.springmvc.entity.Customer;
+import pl.mczarnik.springmvc.entity.CustomerEntity;
 
 import java.util.List;
 
 public interface CustomerDAO {
-    Customer getCustomer(int id);
+    CustomerEntity getCustomer(int id);
 
-    List<Customer> getCustomers();
+    List<CustomerEntity> getCustomers();
 
-    void saveOrUpdateCustomer(Customer customer);
+    void saveOrUpdateCustomer(CustomerEntity customer);
 
     void deleteCustomer(int id);
 
-    List<Customer> searchCustomers(String name);
+    List<CustomerEntity> searchCustomers(String name);
 }

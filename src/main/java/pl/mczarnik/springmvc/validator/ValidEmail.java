@@ -1,4 +1,4 @@
-package pl.mczarnik.springmvc.validation;
+package pl.mczarnik.springmvc.validator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
