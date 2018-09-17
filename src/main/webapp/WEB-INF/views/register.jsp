@@ -75,6 +75,10 @@
                         <form:errors path="email" cssClass="error"/>
                         <form:input path="email" placeholder="email (*)" class="form-control"/>
                     </div>
+                    <!-- Roles -->
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <form:select path="role" items="${roles}" class="form-control" />
+                    </div>
                     <!-- Register Button -->
                     <div style="margin-top: 10px" class="form-group">
                         <div class="col-sm-6 controls">

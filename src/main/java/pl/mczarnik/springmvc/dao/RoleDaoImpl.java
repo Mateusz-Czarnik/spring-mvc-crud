@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pl.mczarnik.springmvc.entity.user.RoleEntity;
 
+import java.util.List;
+
 @Repository
 public class RoleDaoImpl implements RoleDao {
 
@@ -14,6 +16,7 @@ public class RoleDaoImpl implements RoleDao {
     @Autowired
     private SessionFactory securitySessionFactory;
 
+    @Override
     public RoleEntity findRoleByName(String roleName) {
 
         // get the current hibernate session
@@ -32,5 +35,14 @@ public class RoleDaoImpl implements RoleDao {
         }
 
         return role;
+    }
+
+    @Override
+    public List<RoleEntity> getRoles() {
+        Session currentSession = securitySessionFactory.getCurrentSession();
+
+        Query<RoleEntity> query = currentSession.createQuery("from RoleEntity", RoleEntity.class);
+
+        return query.getResultList();
     }
 }
