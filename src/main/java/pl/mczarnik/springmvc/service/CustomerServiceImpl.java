@@ -37,7 +37,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Transactional("transactionManager")
     public List<CustomerEntity> searchCustomers(String name) {
-
         return customerDAO.searchCustomers(name);
     }
 }

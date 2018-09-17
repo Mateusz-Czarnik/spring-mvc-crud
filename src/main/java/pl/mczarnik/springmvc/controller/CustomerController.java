@@ -25,9 +25,7 @@ public class CustomerController {
 
     @GetMapping("/add")
     public String addCustomer(Model model) {
-        // Create pl.mczarnik.springmvc.model attribute to bind form data
         CustomerEntity customer = new CustomerEntity();
-
         model.addAttribute("customer", customer);
 
         return "customer-form";
@@ -36,7 +34,6 @@ public class CustomerController {
     @GetMapping("/update")
     public String updateCustomer(@RequestParam("id") int id, Model model) {
         CustomerEntity customer = customerService.getCustomer(id);
-
         model.addAttribute("customer", customer);
 
         return "customer-form";
@@ -44,7 +41,6 @@ public class CustomerController {
 
     @GetMapping("/delete")
     public String deleteCustomer(@RequestParam("id") int id) {
-
         customerService.deleteCustomer(id);
 
         return "redirect:/customer/list";
@@ -59,9 +55,7 @@ public class CustomerController {
 
     @PostMapping("/search")
     public String searchCustomers(@RequestParam("name") String name, Model model) {
-
         List<CustomerEntity> customers = customerService.searchCustomers(name);
-
         model.addAttribute("customers", customers);
 
         return "list-customers";

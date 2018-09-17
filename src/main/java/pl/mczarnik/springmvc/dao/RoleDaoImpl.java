@@ -12,12 +12,12 @@ public class RoleDaoImpl implements RoleDao {
 
     // need to inject the session factory
     @Autowired
-    private SessionFactory sessionFactory;
+    private SessionFactory securitySessionFactory;
 
     public RoleEntity findRoleByName(String roleName) {
 
         // get the current hibernate session
-        Session currentSession = sessionFactory.getCurrentSession();
+        Session currentSession = securitySessionFactory.getCurrentSession();
 
         // now retrieve/read from database using name
         Query<RoleEntity> theQuery = currentSession.createQuery("from RoleEntity where name=:roleName", RoleEntity.class);

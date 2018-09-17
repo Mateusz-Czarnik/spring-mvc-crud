@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @FieldMatch.List({
-        @FieldMatch(first = "password", second = "matchingPassword", message = "The password fields must match")
+    @FieldMatch(first = "password", second = "matchingPassword", message = "The password fields must match")
 })
 
 public class UserModel {
@@ -37,7 +37,6 @@ public class UserModel {
     private String email;
 
     public UserModel() {
-
     }
 
     public String getUserName() {
@@ -87,6 +86,5 @@ public class UserModel {
     public void setEmail(String email) {
         this.email = email;
     }
-
 }
 

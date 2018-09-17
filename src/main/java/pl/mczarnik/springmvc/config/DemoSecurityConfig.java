@@ -9,11 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
-import org.springframework.security.provisioning.UserDetailsManager;
 import pl.mczarnik.springmvc.service.UserService;
-
-import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
@@ -21,14 +17,6 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserService userService;
-
-    // @Autowired
-    // private DataSource securityDataSource;
-
-    // @Override
-    // protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    //     auth.jdbcAuthentication().dataSource(securityDataSource);
-    // }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -54,22 +42,11 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().accessDeniedPage("/error");
     }
 
-    // @Bean
-    // public UserDetailsManager userDetailsManager() {
-    //     JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager();
-    //
-    //     jdbcUserDetailsManager.setDataSource(securityDataSource);
-    //
-    //     return jdbcUserDetailsManager;
-    // }
-
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-
-    //authenticationProvider bean definition
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();

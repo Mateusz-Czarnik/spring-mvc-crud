@@ -33,8 +33,6 @@ public class DemoAppConfig implements WebMvcConfigurer {
 	private Environment env;
 	
 	private Logger logger = Logger.getLogger(getClass().getName());
-	
-	// define a bean for ViewResolver
 
 	@Bean
 	public ViewResolver viewResolver() {
@@ -90,8 +88,6 @@ public class DemoAppConfig implements WebMvcConfigurer {
 		return props;				
 	}
 
-	// define a bean for our security datasource
-	
 	@Bean
 	public DataSource securityDataSource() {
 		
@@ -105,15 +101,10 @@ public class DemoAppConfig implements WebMvcConfigurer {
 		} catch (PropertyVetoException exc) {
 			throw new RuntimeException(exc);
 		}
-		
-		// log the connection props
-		// for sanity's sake, log this info
-		// just to make sure we are REALLY reading data from properties file
-		
+
 		logger.info(">>> security.jdbc.url=" + env.getProperty("security.jdbc.url"));
 		logger.info(">>> security.jdbc.user=" + env.getProperty("security.jdbc.user"));
-		
-		
+
 		// set database connection props
 		
 		securityDataSource.setJdbcUrl(env.getProperty("security.jdbc.url"));
@@ -152,8 +143,6 @@ public class DemoAppConfig implements WebMvcConfigurer {
 	
 	@Bean
 	public LocalSessionFactoryBean sessionFactory(){
-		
-		// create session factorys
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		
 		// set the properties
@@ -166,8 +155,6 @@ public class DemoAppConfig implements WebMvcConfigurer {
 
 	@Bean
 	public LocalSessionFactoryBean securitySessionFactory(){
-
-		// create session factorys
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 
 		// set the properties
@@ -181,8 +168,6 @@ public class DemoAppConfig implements WebMvcConfigurer {
 	@Bean
 	@Autowired
 	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
-		
-		// setup transaction manager based on session factory
 		HibernateTransactionManager txManager = new HibernateTransactionManager();
 		txManager.setSessionFactory(sessionFactory);
 
@@ -192,8 +177,6 @@ public class DemoAppConfig implements WebMvcConfigurer {
 	@Bean
 	@Autowired
 	public HibernateTransactionManager securityTransactionManager(SessionFactory securitySessionFactory) {
-
-		// setup transaction manager based on session factory
 		HibernateTransactionManager txManager = new HibernateTransactionManager();
 		txManager.setSessionFactory(securitySessionFactory);
 

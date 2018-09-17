@@ -22,15 +22,11 @@ import java.util.stream.Collectors;
 @Service
 public class UserServiceImpl implements UserService {
 
-    // need to inject user dao
     @Autowired
     private UserDao userDao;
 
     @Autowired
     private RoleDao roleDao;
-    //
-    // @Autowired
-    // private BCryptPasswordEncoder passwordEncoder;
 
     private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -43,6 +39,7 @@ public class UserServiceImpl implements UserService {
     @Transactional("securityTransactionManager")
     public void save(UserModel userModel) {
         UserEntity user = new UserEntity();
+
         // assign user details to the user object
         user.setUserName(userModel.getUserName());
         user.setPassword(passwordEncoder.encode(userModel.getPassword()));
@@ -57,7 +54,6 @@ public class UserServiceImpl implements UserService {
         userDao.save(user);
     }
 
-
     @Transactional("securityTransactionManager")
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         UserEntity user = userDao.findByUserName(userName);
@@ -65,7 +61,7 @@ public class UserServiceImpl implements UserService {
             throw new UsernameNotFoundException("Invalid username or password.");
         }
         return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(),
-                mapRolesToAuthorities(user.getRoles()));
+            mapRolesToAuthorities(user.getRoles()));
     }
 
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<RoleEntity> roles) {
