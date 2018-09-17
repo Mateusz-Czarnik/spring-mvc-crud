@@ -1,7 +1,7 @@
 package pl.mczarnik.springmvc.service;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
-import pl.mczarnik.springmvc.entity.UserEntity;
+import pl.mczarnik.springmvc.entity.user.UserEntity;
 import pl.mczarnik.springmvc.model.UserModel;
 
 

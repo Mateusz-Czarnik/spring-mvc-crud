@@ -1,6 +1,6 @@
 package pl.mczarnik.springmvc.dao;
 
-import pl.mczarnik.springmvc.entity.CustomerEntity;
+import pl.mczarnik.springmvc.entity.customer.CustomerEntity;
 
 import java.util.List;
 

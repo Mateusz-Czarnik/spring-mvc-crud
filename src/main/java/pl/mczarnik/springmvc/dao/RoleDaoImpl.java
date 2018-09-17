@@ -5,7 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import pl.mczarnik.springmvc.entity.RoleEntity;
+import pl.mczarnik.springmvc.entity.user.RoleEntity;
 
 @Repository
 public class RoleDaoImpl implements RoleDao {
@@ -20,7 +20,7 @@ public class RoleDaoImpl implements RoleDao {
         Session currentSession = sessionFactory.getCurrentSession();
 
         // now retrieve/read from database using name
-        Query<RoleEntity> theQuery = currentSession.createQuery("from Role where name=:roleName", RoleEntity.class);
+        Query<RoleEntity> theQuery = currentSession.createQuery("from RoleEntity where name=:roleName", RoleEntity.class);
         theQuery.setParameter("roleName", roleName);
 
         RoleEntity role = null;

@@ -6,12 +6,13 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.mczarnik.springmvc.dao.RoleDao;
 import pl.mczarnik.springmvc.dao.UserDao;
-import pl.mczarnik.springmvc.entity.RoleEntity;
-import pl.mczarnik.springmvc.entity.UserEntity;
+import pl.mczarnik.springmvc.entity.user.RoleEntity;
+import pl.mczarnik.springmvc.entity.user.UserEntity;
 import pl.mczarnik.springmvc.model.UserModel;
 
 import java.util.Arrays;
@@ -27,17 +28,19 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private RoleDao roleDao;
+    //
+    // @Autowired
+    // private BCryptPasswordEncoder passwordEncoder;
 
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    @Transactional
+    @Transactional("securityTransactionManager")
     public UserEntity findByUserName(String userName) {
         // check the database if the user already exists
         return userDao.findByUserName(userName);
     }
 
-    @Transactional
+    @Transactional("securityTransactionManager")
     public void save(UserModel userModel) {
         UserEntity user = new UserEntity();
         // assign user details to the user object
@@ -55,7 +58,7 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    @Transactional
+    @Transactional("securityTransactionManager")
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         UserEntity user = userDao.findByUserName(userName);
         if (user == null) {

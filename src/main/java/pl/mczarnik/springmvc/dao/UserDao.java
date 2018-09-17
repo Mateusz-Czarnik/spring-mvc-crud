@@ -1,6 +1,6 @@
 package pl.mczarnik.springmvc.dao;
 
-import pl.mczarnik.springmvc.entity.UserEntity;
+import pl.mczarnik.springmvc.entity.user.UserEntity;
 
 public interface UserDao {
 

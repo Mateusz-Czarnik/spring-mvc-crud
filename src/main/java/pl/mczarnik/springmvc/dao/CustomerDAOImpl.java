@@ -5,7 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import pl.mczarnik.springmvc.entity.CustomerEntity;
+import pl.mczarnik.springmvc.entity.customer.CustomerEntity;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     public List<CustomerEntity> getCustomers() {
         Session session = sessionFactory.getCurrentSession();
 
-        Query<CustomerEntity> query = session.createQuery("FROM Customer ORDER BY lastName", CustomerEntity.class);
+        Query<CustomerEntity> query = session.createQuery("FROM CustomerEntity ORDER BY lastName", CustomerEntity.class);
 
         return query.getResultList();
     }
@@ -39,7 +39,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     public void deleteCustomer(int id) {
         Session session = sessionFactory.getCurrentSession();
 
-        Query<CustomerEntity> query = session.createQuery("DELETE FROM Customer WHERE id=:id");
+        Query<CustomerEntity> query = session.createQuery("DELETE FROM CustomerEntity WHERE id=:id", CustomerEntity.class);
         query.setParameter("id", id);
 
         query.executeUpdate();
@@ -51,11 +51,11 @@ public class CustomerDAOImpl implements CustomerDAO {
         Query<CustomerEntity> query = null;
         if (name != null && name.trim().length() > 0) {
 
-            query = currentSession.createQuery("FROM Customer WHERE LOWER(firstName) LIKE :name OR LOWER(lastName) LIKE :name", CustomerEntity.class);
+            query = currentSession.createQuery("FROM CustomerEntity WHERE LOWER(firstName) LIKE :name OR LOWER(lastName) LIKE :name", CustomerEntity.class);
             query.setParameter("name", "%" + name.toLowerCase() + "%");
 
         } else {
-            query = currentSession.createQuery("FROM Customer", CustomerEntity.class);
+            query = currentSession.createQuery("FROM CustomerEntity", CustomerEntity.class);
         }
 
         return query.getResultList();

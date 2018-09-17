@@ -1,4 +1,4 @@
-package pl.mczarnik.springmvc.entity;
+package pl.mczarnik.springmvc.entity.user;
 
 import javax.persistence.*;
 

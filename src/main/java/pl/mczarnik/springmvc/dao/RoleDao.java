@@ -1,7 +1,7 @@
 package pl.mczarnik.springmvc.dao;
 
 
-import pl.mczarnik.springmvc.entity.RoleEntity;
+import pl.mczarnik.springmvc.entity.user.RoleEntity;
 
 public interface RoleDao {
 

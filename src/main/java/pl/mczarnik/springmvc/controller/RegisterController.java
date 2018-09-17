@@ -8,7 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
-import pl.mczarnik.springmvc.entity.UserEntity;
+import pl.mczarnik.springmvc.entity.user.UserEntity;
 import pl.mczarnik.springmvc.model.UserModel;
 import pl.mczarnik.springmvc.service.UserService;
 
