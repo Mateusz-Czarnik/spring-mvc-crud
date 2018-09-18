@@ -74,6 +74,8 @@ public class RegisterController {
 
         // form validation
         if (bindingResult.hasErrors()) {
+            model.addAttribute("roles", roles);
+
             return "register";
         }
 
@@ -81,6 +83,7 @@ public class RegisterController {
         UserEntity existing = userService.findByUserName(userName);
         if (existing != null) {
             model.addAttribute("user", new UserModel());
+            model.addAttribute("roles", roles);
             model.addAttribute("registrationError", "User name already exists.");
 
             logger.warning("User name already exists.");
