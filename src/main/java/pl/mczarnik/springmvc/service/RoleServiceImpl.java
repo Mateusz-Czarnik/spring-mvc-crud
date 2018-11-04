@@ -16,7 +16,6 @@ public class RoleServiceImpl implements RoleService {
 
     @Transactional("securityTransactionManager")
     public List<RoleEntity> getRoles() {
-        System.out.println("HEllo WOELR");
         return roleDao.getRoles();
     }
 }
