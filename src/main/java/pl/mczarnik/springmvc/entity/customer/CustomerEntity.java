@@ -56,7 +56,7 @@ public class CustomerEntity {
 
     @Override
     public String toString() {
-        return "CustomerDAO{" +
+        return "Customer{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
