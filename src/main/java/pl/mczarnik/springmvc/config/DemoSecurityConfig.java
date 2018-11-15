@@ -26,7 +26,11 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests()
+        http
+            .csrf()
+                .ignoringAntMatchers("/api/**")
+            .and()
+            .authorizeRequests()
                 .antMatchers("/customer/process-form*").hasAnyRole("MANAGER", "ADMIN")
                 .antMatchers("/customer/add*").hasAnyRole("MANAGER", "ADMIN")
                 .antMatchers("/customer/delete").hasRole("ADMIN")

@@ -1,9 +1,7 @@
 package pl.mczarnik.springmvc.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.mczarnik.springmvc.entity.customer.CustomerEntity;
 import pl.mczarnik.springmvc.service.CustomerService;
 
@@ -16,8 +14,30 @@ public class CustomerRestController {
     @Autowired
     private CustomerService customerService;
 
+    // GET
     @GetMapping("/customers")
     public List<CustomerEntity> getCustomers() {
         return customerService.getCustomers();
+    }
+
+    @GetMapping("/customers/{customerId}")
+    public CustomerEntity getCustomers(@PathVariable int customerId) {
+
+        CustomerEntity customer = customerService.getCustomer(customerId);
+
+        if (customer == null) {
+            throw new CustomerNotFoundException("Customer id not found - " + customerId);
+        }
+
+        return customer;
+    }
+
+    // POST
+    @PostMapping("/customers")
+    public CustomerEntity addCustomer(@RequestBody CustomerEntity customer) {
+        customer.setId(0);
+        customerService.saveOrUpdateCustomer(customer);
+
+        return customer;
     }
 }
