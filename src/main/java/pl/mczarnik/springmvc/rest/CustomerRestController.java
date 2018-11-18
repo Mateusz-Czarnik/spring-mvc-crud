@@ -40,4 +40,26 @@ public class CustomerRestController {
 
         return customer;
     }
+
+    // PUT
+    @PutMapping("/customers")
+    public CustomerEntity updateCustomer(@RequestBody CustomerEntity customer) {
+
+        customerService.saveOrUpdateCustomer(customer);
+        return customer;
+    }
+
+    // DELETE
+    @DeleteMapping("/customers/{customerId}")
+    public String deleteCustomer(@PathVariable int customerId) {
+
+        CustomerEntity customer = customerService.getCustomer(customerId);
+
+        if (customer == null) {
+            throw new CustomerNotFoundException("Customer with id " + customerId + " was not found!");
+        }
+
+        customerService.deleteCustomer(customerId);
+        return "Deleted customer with Id " + customerId;
+    }
 }
